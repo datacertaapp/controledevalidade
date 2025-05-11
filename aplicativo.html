@@ -141,9 +141,6 @@
 
     <button id="btn-enviar" onclick="enviarDados()">Enviar</button>
     <p id="mensagem"></p>
-
-    <!-- Botão de sair -->
-    <button id="btn-sair" onclick="sair()">Sair</button>
   </div>
     <script>
     const params = new URLSearchParams(window.location.search);
@@ -278,11 +275,6 @@
         });
       }
       document.getElementById("video-container").style.display = "none";
-    }
-
-    function sair() {
-      sessionStorage.clear();
-      window.location.href = `login.html?id=${planilhaId}`;
     }
   </script>
 
