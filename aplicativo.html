@@ -8,6 +8,15 @@
   <!-- Biblioteca html5-qrcode -->
   <script src="https://unpkg.com/html5-qrcode"></script>
 
+  <!-- Bloqueio do botão voltar -->
+  <script>
+    // Impede uso do botão Voltar para sair da página após carregamento
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function () {
+      history.pushState(null, null, location.href);
+    });
+  </script>
+
   <style>
     * {
       margin: 0;
@@ -142,7 +151,9 @@
     <button id="btn-enviar" onclick="enviarDados()">Enviar</button>
     <p id="mensagem"></p>
   </div>
-    <script>
+
+  <script>
+    // Obtém ID da planilha da URL
     const params = new URLSearchParams(window.location.search);
     const planilhaId = params.get("id");
 
@@ -150,8 +161,9 @@
       alert("ID da planilha não encontrado na URL.");
     }
 
+    // Verifica autenticação e redireciona com replace para não criar histórico
     if (!sessionStorage.getItem("usuarioLogado")) {
-      window.location.href = `login.html?id=${planilhaId}`;
+      window.location.replace(`login.html?id=${planilhaId}`);
     }
 
     const scriptUrl = `https://script.google.com/macros/s/${planilhaId}/exec`;
@@ -277,7 +289,5 @@
       document.getElementById("video-container").style.display = "none";
     }
   </script>
-
-  
 </body>
 </html>
