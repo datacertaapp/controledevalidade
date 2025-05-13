@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Termos de Uso – DataCerta</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f8f9fa;
+      color: #333;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #0d283d;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      color: black;
+      margin-top: 2rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    strong {
+      color: #0d283d;
+    }
+
+    button:disabled {
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Termos de Uso e Condições – DataCerta</h1>
+  <p><strong>Atualizado em:</strong> Maio de 2025</p>
+
+  <h2>1. Aceitação dos Termos</h2>
+  <p>Ao adquirir o sistema <strong>DataCerta</strong>, você concorda com todos os termos e condições descritos neste documento. O uso do produto está condicionado à aceitação integral deste termo.</p>
+
+  <h2>2. Natureza do Produto</h2>
+  <p>O DataCerta é um sistema digital de controle de validade e perdas, baseado em planilha Google Sheets, com automações integradas via Apps Script. O produto é entregue em formato utilizável e não inclui código-fonte visível ao usuário.</p>
+
+  <h2>3. Licença de Uso</h2>
+  <p>A aquisição dá direito a uma <strong>licença de uso pessoal, intransferível e vinculada à planilha ativada</strong>. Esta licença permite utilizar o sistema, mas <strong>não concede acesso ao código-fonte</strong>, scripts internos ou lógica de programação.</p>
+
+  <h2>4. Propriedade Intelectual</h2>
+  <p>Todo o conteúdo, estrutura, layout, lógica, fórmulas e scripts utilizados no DataCerta são de propriedade exclusiva do desenvolvedor. É <strong>proibido copiar, redistribuir, modificar, reverter ou tentar reconstruir</strong> o funcionamento do sistema sem autorização formal.</p>
+
+  <h2>5. Ativação</h2>
+  <p>A licença de uso só será liberada após ativação oficial vinculada ao número da compra e ID da planilha fornecida. O sistema permanecerá restrito até a confirmação dessa ativação.</p>
+
+  <h2>6. Suporte</h2>
+  <p>O suporte oferecido cobre dúvidas operacionais e uso adequado do sistema. Não estão incluídos pedidos de edição estrutural, liberação de código ou customizações técnicas além do escopo contratado.</p>
+
+  <h2>7. Cancelamento e Reembolso</h2>
+  <p>O cliente tem até 7 dias após a compra para solicitar reembolso, conforme previsto pelo Código de Defesa do Consumidor. Após esse período, a licença é considerada definitiva e a ativação não poderá ser revertida.</p>
+
+  <h2>8. Alterações</h2>
+  <p>Estes termos podem ser atualizados a qualquer momento. Recomenda-se revisá-los periodicamente. A versão mais atual será sempre disponibilizada neste link.</p>
+
+  <p><strong>Dúvidas?</strong> Entre em contato com o suporte oficial antes de utilizar ou ativar sua planilha.</p>
+
+  <hr style="margin-top: 3rem;">
+
+  <div style="margin-top: 2rem;">
+    <label style="font-size: 14px;">
+      <input type="checkbox" id="aceite" onclick="habilitarBotao()">
+      Li e aceito todos os termos de uso acima.
+    </label>
+  </div>
+
+  <div style="margin-top: 1.5rem;">
+    <button id="botaoAcesso" disabled style="
+      background-color: #1ba755;
+      color: white;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: not-allowed;
+      transition: 0.3s ease;
+    " onclick="acessarPlanilha()">
+      Acessar Planilha
+    </button>
+  </div>
+
+  <script>
+    function habilitarBotao() {
+      const check = document.getElementById("aceite");
+      const botao = document.getElementById("botaoAcesso");
+
+      if (check.checked) {
+        botao.disabled = false;
+        botao.style.cursor = "pointer";
+        botao.style.backgroundColor = "#148b47";
+      } else {
+        botao.disabled = true;
+        botao.style.cursor = "not-allowed";
+        botao.style.backgroundColor = "#1ba755";
+      }
+    }
+
+    function acessarPlanilha() {
+      // Substitua este link pela URL real da planilha ativada
+      const linkPlanilha = "https://docs.google.com/spreadsheets/d/1dDfMcpjvW3o9AcM_h3ZTuVg0Iq-jzLqXmlVMTQV8ePk/edit?gid=0#gid=0";
+      window.open(linkPlanilha, "_blank");
+    }
+  </script>
+</body>
+</html>
