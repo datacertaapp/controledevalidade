@@ -281,14 +281,14 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
   </header>
 <div style="background: #a50f0f; color: white; padding: 2rem; text-align: center;">
   <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">
-    Descubra como Mercados, Padarias, Farmácias, Agropecuarias... deixaram de perder R$ 200 até R$ 5.000 por mês com produtos vencidos!
+    Descubra como comércios como mercados, padarias e farmácias estão evitando prejuízos de R$ 200 a R$ 1.000 por mês com produtos vencidos!
   </h2>
   <p style="font-size: 1rem; margin: 0 auto; max-width: 800px;">
     Não espere o prejuízo chegar. Use o DataCerta e controle tudo pelo celular — sem instalar nada e sem pagar mensalidade.
   </p>
 </div>
 
-<div class="cta">
+    <div class="cta">
       <a href="#video-explicativo" id="botao-comprar">Clique aqui para ver como funciona</a>
     </div>
 
@@ -310,6 +310,11 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
       <p>Suas senhas são protegidas com segurança avançada, para ninguém acessar sem autorização. Tudo pensado para ser simples, seguro e acessível.</p>
       <p>Você paga apenas uma vez e usa pra sempre. Sem sustos no fim do mês. Sem mensalidades escondidas.</p>
     </div>
+
+    <div class="cta">
+      <a href="#comentarios" id="botao-comentario">Veja o que dizem alguns dos nossos clientes</a>
+    </div>
+
 
     <div class="video-explicativo" id="video-explicativo">
       <h3>Assista ao vídeo e veja como o DataCerta funciona na pratica</h3>
@@ -357,6 +362,16 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
       Garantia de 7 dias: satisfação ou seu dinheiro de volta!
     </div>
 
+    <div class="contador" id="contadorPlanilhas">
+      Mais de <strong id="numeroPlanilhas">50</strong> planilhas ativas em todo o Brasil. <br>
+      Sistema usado por padarias, farmácias, mercados, agropecuarias, açougues... <br>em mais de 20 estados.
+    </div>
+
+    <iframe id="comentarios" src="comentarios.html" 
+        style="width:100%; max-width:650px; height:850px; border:none; margin: 2rem auto; display: block;"
+        title="Comentários simulados estilo Facebook">
+    </iframe>
+
     <div class="faq">
       <h3>Perguntas Frequentes</h3>
       <div class="faq-item">
@@ -403,10 +418,10 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const dataBase = new Date("2024-03-01");
+      const dataBase = new Date("2025-04-01");
       const hoje = new Date();
       const diasPassados = Math.floor((hoje - dataBase) / (1000 * 60 * 60 * 24));
-      const numero = 432 + Math.floor(diasPassados * 1.2) % 200;
+      const numero = 10 + Math.floor(diasPassados * 1.2) % 200;
       document.getElementById("numeroPlanilhas").textContent = numero;
 
       const faqItems = document.querySelectorAll(".faq-item");
