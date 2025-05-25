@@ -54,6 +54,13 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
       align-items: center;
       gap: 10px;
     }
+    header p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+    }
     header h1 img {
       height: 40px;
     }
@@ -122,6 +129,25 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
     }
     .cta a:hover {
       background-color: rgb(24, 172, 103);
+    }
+    .ctad {
+      margin-top: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .ctad a {
+      display: inline-block;
+      background-color: #148b47;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      font-weight: BOLD;
+    }
+    .ctad a:hover {
+      background-color: rgb(182, 48, 10);
     }
     .video-explicativo {
       margin-top: 3rem;
@@ -194,6 +220,17 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
       align-items: center;
       padding: 1rem;
     }
+    .contador-destaque {
+      font-size: 24px;
+      color: #0d283d;
+      font-weight: bold;
+      text-align: center;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
     .faq {
       margin-top: 4rem;
     }
@@ -218,6 +255,11 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
     }
     .faq-item.ativa .faq-resposta {
       display: block;
+      animation: slideDown 0.3s ease-out;
+    }
+    @keyframes slideDown {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
     footer {
       margin-top: 4rem;
@@ -253,6 +295,7 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
       font-size: 1rem;
       z-index: 1000;
       line-height: 1.4;
+      box-sizing: border-box;
     }
     .call-fixo a {
       color: white;
@@ -266,6 +309,10 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
       .call-fixo {
         display: block;
       }
+      .contador-destaque {
+        font-size: 20px;
+        margin: 1rem;
+      }
     }
   
   </style>
@@ -277,9 +324,9 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
       <img src="logo.png" alt="Logo DataCerta">
       DataCerta
     </h1>
-    <p>Chega de perdas silenciosas. Tenha o controle total da validade do seu estoque, direto no celular.</p>
+    <p>Tenha o controle total da validade do seu estoque, direto no celular.</p>
   </header>
-<div style="background: #a50f0f; color: white; padding: 2rem; text-align: center;">
+<div style="background: #fbbc04; color: black; padding: 2rem; text-align: center;">
   <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">
     Controle a validade do seu estoque pelo celular e evite perdas de até R$1.000/mês.
   </h2>
@@ -288,8 +335,15 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
   </p>
 </div>
 
-    <div class="cta">
-      <a href="#video-explicativo" id="botao-comprar">VEJA COMO FUNCIONA E COMPRE COM DESCONTO</a>
+    <div id="contadorTempo" class="contador-destaque">⏳ Carregando...</div>
+
+
+    <p class="p_alerta" style="color: red; text-align: center; font-weight: bold; font-size: 30px;">
+     ⚠️ Promoção por tempo limitado! Válida somente até 26/05/2025.
+    </p>
+
+    <div class="ctad">
+      <a href="https://pay.hotmart.com/S99720580F?off=22yllhkz" id="botao-comprar">COMPRE COM DESCONTO AGORA</a>
     </div>
 
 
@@ -331,12 +385,14 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
       <iframe src="https://www.youtube.com/embed/E1oG3qpqyew" allowfullscreen></iframe>
     </div>
 
-    <p style="color: red; text-align: center; font-weight: bold;">
-     ⚠️ Promoção por tempo limitado! Últimos dias com acesso vitalício por R$ 147,00.
+
+    <div id="contadorTempo2" class="contador-destaque">⏳ Carregando...</div>
+    <p style="color: red; text-align: center; font-weight: bold; font-size: 30px;">
+     ⚠️ Promoção por tempo limitado! Válida somente até 26/05/2025.
     </p>
 
     <div class="cta">
-      <a href="https://pay.hotmart.com/S99720580F" id="botao-comprar-secundario">NÃO QUERO MAIS PERDER DINHEIRO COM VENCIDOS</a></a>
+      <a href="https://pay.hotmart.com/S99720580F?off=22yllhkz" id="botao-comprar-secundario">NÃO QUERO MAIS PERDER DINHEIRO COM VENCIDOS</a></a>
     </div>
 
     
@@ -351,15 +407,18 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
      <img class="svg"  src="app.svg" alt="App DataCerta" style="max-width: 100%; height: auto; width: 550px;">
    </div>
 
-
+   <div id="contadorTempo3" class="contador-destaque">⏳ Carregando...</div>
+   <p style="color: red; text-align: center; font-weight: bold; font-size: 30px;">
+     ⚠️ Promoção por tempo limitado! Válida somente até 26/05/2025.
+    </p>
 
     <div class="cta">
-      <a href="https://pay.hotmart.com/S99720580F" id="botao-comprar">NÃO QUERO MAIS PERDER DINHEIRO COM VENCIDOS</a></a>
+      <a href="https://pay.hotmart.com/S99720580F?off=22yllhkz" id="botao-comprar">NÃO QUERO MAIS PERDER DINHEIRO COM VENCIDOS</a></a>
     </div>
 
     <div class="preco-ancorado">
-      De <s>R$ 297,00</s> por apenas <strong>R$ 147,00</strong> — acesso vitalício, sem mensalidades!
-     ou parcele em até <strong>10x de R$ 17,67</strong> no cartão de crédito
+      De <s>R$ 297,00</s> por apenas <strong>R$ 100,00</strong> — acesso vitalício, sem mensalidades!
+     ou parcele em até <strong>12x de R$ 10,34</strong> no cartão de crédito
      </div>
 
     <div class="selo-garantia">
@@ -397,8 +456,7 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
   </section>
 
   <div class="call-fixo">
-   <div>Quero evitar perdas e multas com o DataCerta.</div>
-   <a href="https://pay.hotmart.com/S99720580F">Ativar agora</a>
+   ⏳ Oferta termina em <span id="contadorMobile">carregando...</span> — <a href="https://pay.hotmart.com/S99720580F?off=22yllhkz">Ativar agora</a>
   </div>
 
 
@@ -416,19 +474,98 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    function iniciarContador(idElemento, formato = 'completo') {
+      const dataFim = new Date("2025-05-26T23:59:59-03:00"); // Horário de Brasília
+      const elemento = document.getElementById(idElemento);
+      
+      if (!elemento) {
+        console.error('Elemento não encontrado:', idElemento);
+        return;
+      }
+
+      function atualizarContador() {
+        const agora = new Date();
+        const diferenca = dataFim.getTime() - agora.getTime();
+        
+        if (diferenca <= 0) {
+          elemento.textContent = formato === 'completo' ? "⏰ Promoção Encerrada!" : "Encerrada";
+          return;
+        }
+
+        // Calcular tempo restante
+        const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+        // Formatar com zeros à esquerda
+        const d = String(dias).padStart(2, '0');
+        const h = String(horas).padStart(2, '0');
+        const m = String(minutos).padStart(2, '0');
+        const s = String(segundos).padStart(2, '0');
+
+        if (formato === 'completo') {
+          elemento.textContent = `⏳ Tempo restante: ${d} dias, ${h}h ${m}m ${s}s`;
+        } else {
+          elemento.textContent = `${d}d ${h}h ${m}m ${s}s`;
+        }
+      }
+
+      // Atualizar imediatamente
+      atualizarContador();
+      
+      // Atualizar a cada segundo
+      const intervalo = setInterval(atualizarContador, 1000);
+      
+      // Limpar intervalo quando necessário (opcional)
+      return intervalo;
+    }
+
+    // Inicializar quando o DOM estiver carregado
+    document.addEventListener("DOMContentLoaded", function() {
+      console.log("DOM carregado, iniciando contadores...");
+      
+      // Iniciar contadores principais
+      iniciarContador("contadorTempo", 'completo');
+      iniciarContador("contadorTempo2", 'completo');
+      iniciarContador("contadorTempo3", 'completo');
+      iniciarContador("contadorMobile", 'simples');
+
+      // Contador de planilhas (mantém o original)
       const dataBase = new Date("2025-04-01");
       const hoje = new Date();
       const diasPassados = Math.floor((hoje - dataBase) / (1000 * 60 * 60 * 24));
       const numero = 10 + Math.floor(diasPassados * 1.2) % 200;
       document.getElementById("numeroPlanilhas").textContent = numero;
 
+      // FAQ animado
       const faqItems = document.querySelectorAll(".faq-item");
       faqItems.forEach(item => {
-        item.addEventListener("click", () => {
-          item.classList.toggle("ativa");
+        item.addEventListener("click", function() {
+          this.classList.toggle("ativa");
         });
       });
+
+      console.log("Contadores iniciados com sucesso!");
+    });
+
+    // Backup: inicializar após carregamento completo da página
+    window.addEventListener("load", function() {
+      // Verificar se os contadores estão funcionando
+      setTimeout(function() {
+        const contadores = ['contadorTempo', 'contadorTempo2', 'contadorTempo3', 'contadorMobile'];
+        
+        contadores.forEach(id => {
+          const elemento = document.getElementById(id);
+          if (elemento && elemento.textContent.includes("Carregando")) {
+            if (id === 'contadorMobile') {
+              iniciarContador(id, 'simples');
+            } else {
+              iniciarContador(id, 'completo');
+            }
+          }
+        });
+      }, 1000);
     });
   </script>
 </body>
