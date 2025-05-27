@@ -339,8 +339,8 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
     <div id="contadorTempo" class="contador-destaque">⏳ Carregando...</div>
 
 
-    <p class="p_alerta" style="color: red; text-align: center; font-weight: bold; font-size: 30px;">
-     ⚠️ Promoção por tempo limitado! Válida somente até 26/05/2025.
+    <p class="p_alerta" id="p_alerta" style="color: red; text-align: center; font-weight: bold; font-size: 30px;">
+     ⚠️ Promoção por tempo limitado! Válida somente até <span id="dataAtual"></span>.
     </p>
 
     <div class="ctad">
@@ -389,7 +389,7 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
 
     <div id="contadorTempo2" class="contador-destaque">⏳ Carregando...</div>
     <p style="color: red; text-align: center; font-weight: bold; font-size: 30px;">
-     ⚠️ Promoção por tempo limitado! Válida somente até 26/05/2025.
+     ⚠️ Promoção por tempo limitado! Válida somente até <span id="dataAtual2"></span>.
     </p>
 
     <div class="cta">
@@ -410,7 +410,7 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
 
    <div id="contadorTempo3" class="contador-destaque">⏳ Carregando...</div>
    <p style="color: red; text-align: center; font-weight: bold; font-size: 30px;">
-     ⚠️ Promoção por tempo limitado! Válida somente até 26/05/2025.
+     ⚠️ Promoção por tempo limitado! Válida somente até <span id="dataAtual3"></span>.
     </p>
 
     <div class="cta">
@@ -475,8 +475,25 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
   </footer>
 
   <script>
+    // Função para atualizar a data atual em todos os spans
+    function atualizarDataAtual() {
+      const hoje = new Date();
+      const dia = String(hoje.getDate()).padStart(2, '0');
+      const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+      const ano = hoje.getFullYear();
+      const dataFormatada = `${dia}/${mes}/${ano}`;
+
+      // Atualiza todos os spans com a data atual
+      const spans = ['dataAtual', 'dataAtual2', 'dataAtual3'];
+      spans.forEach(id => {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+          elemento.textContent = dataFormatada;
+        }
+      });
+    }
+
     function iniciarContador(idElemento, formato = 'completo') {
-      const dataFim = new Date("2025-05-26T23:59:59-03:00"); // Horário de Brasília
       const elemento = document.getElementById(idElemento);
       
       if (!elemento) {
@@ -486,29 +503,41 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
 
       function atualizarContador() {
         const agora = new Date();
-        const diferenca = dataFim.getTime() - agora.getTime();
+        
+        // Calcular o fim do dia atual (23:59:59)
+        const fimDoDia = new Date(agora);
+        fimDoDia.setHours(23, 59, 59, 999);
+        
+        const diferenca = fimDoDia.getTime() - agora.getTime();
         
         if (diferenca <= 0) {
-          elemento.textContent = formato === 'completo' ? "⏰ Promoção Encerrada!" : "Encerrada";
-          return;
+          // Se passou da meia-noite, recalcular para o próximo dia
+          const novoFimDoDia = new Date(agora);
+          novoFimDoDia.setDate(novoFimDoDia.getDate() + 1);
+          novoFimDoDia.setHours(23, 59, 59, 999);
+          
+          const novaDiferenca = novoFimDoDia.getTime() - agora.getTime();
+          calcularTempo(novaDiferenca);
+        } else {
+          calcularTempo(diferenca);
         }
 
-        // Calcular tempo restante
-        const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-        const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
-        const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+        function calcularTempo(tempo) {
+          // Calcular tempo restante
+          const horas = Math.floor(tempo / (1000 * 60 * 60));
+          const minutos = Math.floor((tempo % (1000 * 60 * 60)) / (1000 * 60));
+          const segundos = Math.floor((tempo % (1000 * 60)) / 1000);
 
-        // Formatar com zeros à esquerda
-        const d = String(dias).padStart(2, '0');
-        const h = String(horas).padStart(2, '0');
-        const m = String(minutos).padStart(2, '0');
-        const s = String(segundos).padStart(2, '0');
+          // Formatar com zeros à esquerda
+          const h = String(horas).padStart(2, '0');
+          const m = String(minutos).padStart(2, '0');
+          const s = String(segundos).padStart(2, '0');
 
-        if (formato === 'completo') {
-          elemento.textContent = `⏳ Tempo restante: ${d} dias, ${h}h ${m}m ${s}s`;
-        } else {
-          elemento.textContent = `${d}d ${h}h ${m}m ${s}s`;
+          if (formato === 'completo') {
+            elemento.textContent = `⏳ Tempo restante: ${h}h ${m}m ${s}s`;
+          } else {
+            elemento.textContent = `${h}h ${m}m ${s}s`;
+          }
         }
       }
 
@@ -518,13 +547,18 @@ src="https://www.facebook.com/tr?id=1582949399039529&ev=PageView&noscript=1"
       // Atualizar a cada segundo
       const intervalo = setInterval(atualizarContador, 1000);
       
-      // Limpar intervalo quando necessário (opcional)
       return intervalo;
     }
 
     // Inicializar quando o DOM estiver carregado
     document.addEventListener("DOMContentLoaded", function() {
       console.log("DOM carregado, iniciando contadores...");
+      
+      // Atualizar data atual primeiro
+      atualizarDataAtual();
+      
+      // Atualizar a data a cada minuto (em caso de mudança de dia)
+      setInterval(atualizarDataAtual, 60000);
       
       // Iniciar contadores principais
       iniciarContador("contadorTempo", 'completo');
