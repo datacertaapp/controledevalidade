@@ -808,6 +808,49 @@
   }
 }
 
+.validacao-confianca {
+  margin-top: 2rem;
+  background: rgba(255,255,255,0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+.selos-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.selo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.selo-item:hover {
+  transform: scale(1.05);
+}
+
+.icone-selo {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+}
+
+.selo-item span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+
+
 </style>
 </head>
 <body>
@@ -973,9 +1016,37 @@
         <div>Garantia de 7 dias: satisfação ou seu dinheiro de volta!</div>
       </div>
       
+  <div class="validacao-confianca">
+    <div class="selos-container">
+    
+    <div class="selo-item">
+      <div class="icone-selo">🔒</div>
+      <span>SSL Seguro</span>
+    </div>
+
+    <div class="selo-item">
+      <div class="icone-selo">🔥</div>
+      <span>Aprovado pela Hotmart</span>
+    </div>
+
+    <div class="selo-item">
+      <div class="icone-selo">✅</div>
+      <span>Satisfação Garantida</span>
+    </div>
+
+    <div class="selo-item">
+      <div class="icone-selo">💳</div>
+      <span>Pagamento Seguro</span>
+    </div>
+
+  </div>
+</div>
+
+
       <div class="contador-destaque" style="background: rgba(0,0,0,0.3); margin-top: 2rem;">
         ⏳ Mais de <strong id="numeroPlanilhas">50</strong> planilhas ativas em todo o Brasil
       </div>
+      
     </div>
   </div>
 </section>
