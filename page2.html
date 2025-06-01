@@ -1,661 +1,1197 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>DataCerta - Controle de Validade</title>
-<!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-HPVX473E63"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-HPVX473E63');
-</script>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1033442545012715');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" src="https://www.facebook.com/tr?id=1582949399039529&amp;ev=PageView&amp;noscript=1" style="display:none" width="1"/></noscript>
-<!-- End Meta Pixel Code -->
 <style>
-
-
-    body {
+    :root {
+      --primary: #0d283d;
+      --secondary: #1ba755;
+      --accent: #e74c3c;
+      --light: #f4f4f4;
+      --dark: #333;
+      --text: #0d283d;
+      --gray: #666;
+      --white: #fff;
+      --shadow: 0 5px 15px rgba(0,0,0,0.08);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #f4f4f4, #e9e9e9);
-      color: #0d283d;
+      background: linear-gradient(to bottom, #f8f9fa, #e9e9e9);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
+    
     header {
-      background-color: #0d283d;
-      color: white;
-      padding: 2rem;
+      background: var(--primary);
+      color: var(--white);
+      padding: 2.5rem 1rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    header h1 {
-      margin-bottom: 0.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
     }
-    header p {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.2rem;
+    
+    header::after {
+      content: "";
+      position: absolute;
+      bottom: -30px;
+      right: -30px;
+      width: 150px;
+      height: 150px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
     }
-    header h1 img {
-      height: 40px;
-    }
-    section {
+    
+    .header-content {
       max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
-    section h2 {
-      color: #0d283d;
-      text-align: center;
-    }
-    .benefits {
+    
+    .logo-container {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      margin-top: 2rem;
-      gap: 1rem;
-    }
-    .benefit {
-     flex: 1 1 250px;
-     max-width: 250px;
-     display: flex;
-     flex-direction: column;
-     justify-content: flex-start;
-     align-items: center;
-     text-align: center;
-     margin: 0.5rem;
-     padding: 1.5rem;
-     background: white;
-     border-radius: 8px;
-     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .benefit span {
-      font-size: 2rem;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .problema, .solucao {
-      border-radius: 8px;
-      padding: 1rem;
-      margin: 2rem 0;
-    }
-    .problema {
-      background: #e3eef7;
-      border-left: 5px solid #0d283d;
-    }
-    .solucao {
-      background: #d8f5e3;
-      border-left: 5px solid #1ba755;
-    }
-    .cta {
-      margin-top: 2rem;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .cta a {
-      display: inline-block;
-      background-color: #148b47;
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      text-decoration: none;
-      transition: background-color 0.3s;
-      font-weight: bold;
-    }
-    .cta a:hover {
-      background-color: RED;
-    }
-    .ctad {
-      margin-top: 2rem;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .ctad a {
-      display: inline-block;
-      background-color: #148b47;
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      text-decoration: none;
-      transition: background-color 0.3s;
-      font-weight: BOLD;
-    }
-    .ctad a:hover {
-      background-color: rgb(182, 48, 10);
-    }
-    .video-explicativo {
-      margin-top: 3rem;
-      text-align: center;
-    }
-    .video-explicativo iframe {
-      width: 100%;
-      height: 315px;
-      max-width: 560px;
-      border: none;
-      border-radius: 8px;
-    }
-    .como-funciona {
-      background: #f4f4f4;
-      padding: 2rem 1rem;
-      margin-top: 3rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .como-funciona h3 {
-      text-align: center;
-      color: #0d283d;
-      font-size: 20px;
-    }
-    .como-funciona ol {
-      margin-top: 1rem;
-      padding-left: 1.2rem;
-      font-size: 16px;
-    }
-   .preco-ancorado {
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: #0d283d;
-      background: #ffffff;
-      padding: 1rem;
-      border: 2px dashed #0d283d;
-      border-radius: 8px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-    .preco-ancorado strong {
-      font-size: 1.4rem;
-      color: #0d283d;
-    }
-    .selo-garantia {
-      margin-top: 1rem;
-      background-color: #fff;
-      padding: 1rem;
-      border: 2px solid #0d283d;
-      border-radius: 8px;
-      font-weight: bold;
-      color: #0d283d;
-      text-align: center;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .contador {
-      margin-top: 2rem;
-      font-size: 1rem;
-      color: #0d283d;
-      text-align: center;
-      border: 2px solid #0d283d;
-      border-radius: 8px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
       align-items: center;
-      padding: 1rem;
+      gap: 12px;
+      margin-bottom: 1.5rem;
     }
-    .contador-destaque {
-      font-size: 24px;
-      color: #0d283d;
-      font-weight: bold;
-      text-align: center;
-      margin: 1rem 0;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    
+    .logo-container img {
+      height: 46px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
     }
-    .faq {
-      margin-top: 4rem;
+    
+    .logo-container h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--white);
+      margin: 0;
     }
-    .faq h3 {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .faq-item {
+    
+    .header-content h2 {
+      font-size: 1.9rem;
+      font-weight: 700;
       margin-bottom: 1rem;
-      border-bottom: 1px solid #ccc;
-      padding: 0.5rem 0;
-      cursor: pointer;
+      line-height: 1.3;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-    .faq-item strong {
-      display: block;
-      font-size: 16px;
+    
+    .header-content p {
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      opacity: 0.9;
     }
-    .faq-resposta {
-      display: none;
-      padding-top: 0.5rem;
-      color: #333;
-    }
-    .faq-item.ativa .faq-resposta {
-      display: block;
-      animation: slideDown 0.3s ease-out;
-    }
-    @keyframes slideDown {
-      from {opacity: 0; transform: translateY(-10px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-    footer {
-      margin-top: 4rem;
+    
+    .contador-destaque {
+      background: linear-gradient(135deg, var(--accent), #c0392b);
+      color: var(--white);
+      font-size: 1.4rem;
+      font-weight: 700;
       text-align: center;
-      font-size: 0.875rem;
-      color: #555;
-      padding: 2rem 1rem;
+      padding: 1.2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      max-width: 650px;
+      margin: 2rem auto;
+      position: relative;
+      z-index: 10;
+      animation: pulse 2s infinite;
     }
-    footer .social {
-      margin-top: 1rem;
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 #0a1e2d}
+      70% { box-shadow: 0 0 0 12px rgba(231, 76, 60, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
     }
-    footer .social a {
-      color: #0d283d;
+    
+    .alert-banner {
+      background: #fff8e6;
+      border: 2px solid var(--accent);
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1.5rem auto;
+      text-align: center;
+      max-width: 600px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--accent);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .alert-banner::before {
+      content: "⚠️";
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(to right, var(--secondary), #13823e);
+      color: var(--white);
+      padding: 1.1rem 2.2rem;
+      border-radius: 50px;
+      font-size: 1.3rem;
+      font-weight: 700;
       text-decoration: none;
-      display: inline-flex;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(20, 139, 71, 0.4);
+      margin: 1rem 0;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .cta-button::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, #13823e, var(--secondary));
+      opacity: 0;
+      transition: var(--transition);
+      z-index: -1;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(20, 139, 71, 0.6);
+    }
+    
+    .cta-button:hover::after {
+      opacity: 1;
+    }
+    
+    section {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+    
+    .section-title {
+      color: var(--primary);
+      text-align: center;
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    .problem-solution-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin: 3rem 0;
+      
+    }
+    
+    @media (min-width: 992px) {
+      .problem-solution-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .problema-solucao {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin: 3rem 0;
+      
+    }
+    
+    @media (max-width: 768px) {
+      .problema-solucao {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .problema, .solucao {
+      border-radius: 15px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      
+    }
+    
+    .problema {
+      background: linear-gradient(135deg, #e3eef7, #d4e4f2);
+      border-left: 5px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+      
+    }
+    
+    .solucao {
+      background: linear-gradient(135deg, #d8f5e3, #c5eed5);
+      border-left: 5px solid var(--secondary);
+      position: relative;
+      overflow: hidden;
+      
+    }
+    
+    .problema h3, .solucao h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+    
+    .solucao h3 {
+      color: var(--secondary);
+    }
+    
+    .problema ul, .solucao ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      list-style-type: none;
+    }
+    
+    .problema li, .solucao li {
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+    
+    .problema li::before {
+      content: "✖";
+      color: var(--accent);
+      position: absolute;
+      left: -1.5rem;
+      font-weight: bold;
+    }
+    
+    .solucao li::before {
+      content: "✓";
+      color: var(--secondary);
+      position: absolute;
+      left: -1.5rem;
+      font-weight: bold;
+    }
+    
+    .benefits-section {
+      background: #f8f9fa;
+      padding: 5rem 1rem;
+      position: relative;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .benefit-card {
+      background: var(--white);
+      padding: 2.5rem 1.8rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(13, 40, 61, 0.1);
+    }
+    
+    .benefit-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+    }
+    
+    .benefit-icon {
+      font-size: 3.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--secondary);
+      display: inline-block;
+    }
+    
+    .benefit-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .benefit-card p {
+      color: var(--gray);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+    
+    .comentarios-container {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 2.5rem 1.5rem;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    
+    .comentarios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+    
+    .comentario {
+      background: var(--white);
+      padding: 1.8rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+      transition: var(--transition);
+      border: 1px solid rgba(13, 40, 61, 0.08);
+    }
+    
+    .comentario:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .avatar {
+      display: flex;
       align-items: center;
-      gap: 5px;
+      margin-bottom: 1.2rem;
     }
-    footer .social a img {
-      width: 20px;
-      height: 20px;
+    
+    .avatar img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--secondary);
+      margin-right: 1rem;
     }
+    
+    .nome {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+    
+    .texto {
+      margin: 1rem 0;
+      color: var(--dark);
+      line-height: 1.7;
+      font-style: italic;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+    
+    .texto::before {
+      position: absolute;
+      left: 0;
+      top: -10px;
+      font-size: 3rem;
+      color: rgba(27, 167, 85, 0.2);
+      font-family: serif;
+      line-height: 1;
+    }
+    
+    .video-container {
+      margin: 4rem 0;
+      text-align: center;
+      position: relative;
+    }
+    
+    .video-container h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    .video-wrapper {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .video-wrapper::before {
+      content: "";
+      display: block;
+      padding-top: 56.25%;
+    }
+    
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .app-demo {
+      text-align: center;
+      margin: 4rem auto;
+      max-width: 700px;
+    }
+    
+    .app-demo img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    
+    .selo-garantia {
+      background: rgba(255,255,255,0.15);
+      padding: 1.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      text-align: center;
+      max-width: 400px;
+      margin: 1.5rem auto;
+      border: 2px solid var(--secondary);
+      backdrop-filter: blur(5px);
+    }
+    
+    .contador {
+      margin: 2rem 0;
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      max-width: 600px;
+      margin: 1.5rem auto;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .contador strong {
+      color: #ffd700;
+    }
+    
+    .faq-section {
+      background: var(--light-bg);
+      padding: 5rem 1rem;
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      background: white;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    
+    .faq-item:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .faq-question {
+      padding: 1.8rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      border: none;
+      width: 100%;
+      text-align: left;
+      color: var(--primary);
+    }
+    
+    .faq-question:hover {
+      background: #f8f9fa;
+    }
+    
+    .faq-answer {
+      padding: 0 1.8rem 1.8rem;
+      color: var(--gray-text);
+      line-height: 1.7;
+      display: none;
+    }
+    
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    
+    .faq-icon {
+      transition: transform 0.3s;
+      font-size: 1.8rem;
+      color: var(--secondary);
+    }
+    
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+    
+    
+    .footer {
+      background: var(--primary);
+      color: var(--white);
+      padding: 4rem 1rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .footer-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .footer-column {
+      padding: 0.5rem;
+    }
+    
+    .footer-column h3 {
+      color: var(--secondary);
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 0.8rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-column ul li a {
+      color: #ddd;
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-block;
+    }
+    
+    .footer-column ul li a:hover {
+      color: var(--secondary);
+      transform: translateX(5px);
+    }
+    
+    .copyright {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.95rem;
+      color: #aaa;
+    }
+    
+    .copyright a {
+      color: var(--secondary);
+      text-decoration: none;
+    }
+    
+    .copyright a:hover {
+      text-decoration: underline;
+    }
+    
     .call-fixo {
       display: none;
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      background: #1ba755;
-      color: white;
+      background: var(--secondary);
+      color: var(--white);
       text-align: center;
-      padding: 0.8rem 1rem;
-      font-size: 1rem;
+      padding: 0.9rem 1rem;
+      font-size: 1.1rem;
       z-index: 1000;
-      line-height: 1.4;
       box-sizing: border-box;
+      box-shadow: 0 -3px 15px rgba(0,0,0,0.2);
     }
+    
     .call-fixo a {
-      color: white;
-      font-weight: bold;
+      color: var(--white);
+      font-weight: 700;
       text-decoration: underline;
       display: inline-block;
-      font-size: 1.1rem;
-      font-weight: bold;
+      margin-left: 5px;
     }
+    
     @media (max-width: 768px) {
       .call-fixo {
         display: block;
       }
-      .contador-destaque {
-        font-size: 20px;
-        margin: 1rem;
+      
+      .header-content h2 {
+        font-size: 1.6rem;
       }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
     }
-  
-  
-
-.avatar {
-  margin-right: 1rem;
-  flex-shrink: 0;
-}
-.avatar img {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #ddd;
-  background-color: #fff;
-}
-</style>
-<style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f6f7;
+    .oferta-section {
+      background: linear-gradient(135deg, var(--primary), #0a1e2d);
+      color: white;
+      padding: 4rem 1rem;
+      border-radius: 20px;
+      margin: 4rem auto;
+      max-width: 1000px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
     }
-    .comentario {
-      display: flex;
-      align-items: flex-start;
+    
+    .oferta-section::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+    }
+    
+    .oferta-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .oferta-section h2 {
+      font-size: 2.5rem;
       margin-bottom: 1.5rem;
-      background: white;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
-    .avatar {
-      margin-right: 1rem;
+    
+    .oferta-section p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
     }
-    .avatar img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
+    
+    .preco-container {
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 2.5rem;
+      max-width: 600px;
+      margin: 2rem auto;
+      backdrop-filter: blur(10px);
     }
-    .conteudo {
-      flex: 1;
+    
+    .preco-original {
+      font-size: 1.5rem;
+      text-decoration: line-through;
+      opacity: 0.7;
+      margin-bottom: 0.5rem;
     }
-    .nome {
-      font-weight: bold;
-      color: #365899;
-      margin: 0;
+    
+    .preco-promocional {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #ffd700;
+      margin-bottom: 1rem;
     }
-    .texto {
-      margin: 5px 0;
-      white-space: pre-line;
+    
+    .preco-parcelado {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
     }
-    .acoes {
-      color: #93979F;
-      font-size: 0.85rem;
-      margin: 0;
+    
+    .garantia-container {
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 1.5rem;
+      max-width: 500px;
+      margin: 2rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
     }
-  </style></head>
+    
+    .garantia-container .icon {
+      font-size: 2rem;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-header h2::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    .section-header p {
+      font-size: 1.2rem;
+      color: var(--gray-text);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+  .problem-solution-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+</head>
 <body>
 <header>
-<h1>
-<img alt="Logo DataCerta" src="logo.png"/>
-      DataCerta
-    </h1>
-<p>Tenha o controle total da validade do seu estoque, direto no celular.</p>
+  <div class="header-content">
+    <div class="logo-container">
+      <img alt="Logo DataCerta" src="logo.png"/>
+      <h1>DataCerta</h1>
+    </div>
+    <h2>Você está perdendo dinheiro com produtos vencidos?</h2>
+    <p>Empresas brasileiras perdem de R$ 200,00 a R$20.000,00 por ano com mercadorias vencidas. Não deixe isso acontecer com você!.</p>
+    
+    <a href="https://pay.hotmart.com/S99720580F?off=iqejge19" class="cta-button">🔍 Quero proteger meu estoque agora</a>
+  </div>
 </header>
-<div style="background: rgb(208, 5, 5); color: white; padding: 2rem; text-align: center;">
-<h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">
-    Controle a validade do seu estoque pelo celular e evite perdas de até R$1.000/mês.
-  </h2>
-<p style="font-size: 1rem; margin: 0 auto; max-width: 800px;">
-    Não espere o prejuízo chegar. Use o DataCerta e controle tudo pelo celular — sem instalar nada e sem pagar mensalidade.
-  </p>
-</div>
-<div class="contador-destaque" id="contadorTempo">⏳ Carregando...</div>
-<p class="p_alerta" id="p_alerta" style="color: red; text-align: center; font-weight: bold; font-size: 30px;">
-     ⚠️ Promoção por tempo limitado! Válida somente até <span id="dataAtual"></span>.
-    </p>
-<div class="ctad">
-<a href="https://pay.hotmart.com/S99720580F?off=22yllhkz" id="botao-comprar">COMPRE COM DESCONTO AGORA</a>
-</div>
+
 <section>
-<h2>Você já perdeu dinheiro com produtos vencidos?</h2>
-<div class="problema">
-<p>Você não está sozinho. Pequenos comércios perdem centenas de reais todos os meses por não controlarem corretamente as datas de validade.</p>
-<p>Isso causa prejuízos invisíveis, desperdício de mercadoria, problemas com clientes e até riscos com órgãos fiscalizadores como Vigilância Sanitária ou Procon.</p>
-<p>Além disso, existem pessoas que entram na sua loja só pra caçar produto vencido. Quando acham, você perde duas vezes: é obrigado a dar outro produto de graça e ainda descartar o vencido.</p>
-</div>
-<div class="solucao">
-<h3>Com o DataCerta, você nunca mais será pego de surpresa</h3>
-<p>Registre validades diretamente do celular, sem instalar nada. Basta acessar o app por um link exclusivo. Se preferir, pode usar a planilha direto no computador também.</p>
-<p>Receba alertas por e-mail antes que os produtos vençam — e o melhor: cada responsável recebe somente o que é do seu setor.</p>
-<p>Veja tudo em um painel fácil de entender: vendas, perdas, produtos vencidos e até comparativo entre setores.</p>
-<p>Suas senhas são protegidas com segurança avançada, para ninguém acessar sem autorização. Tudo pensado para ser simples, seguro e acessível.</p>
-<p>Você paga apenas uma vez e usa pra sempre. Sem sustos no fim do mês. Sem mensalidades escondidas.</p>
-</div>
-
-<div class="comentarios" style="max-width:650px; margin: 2rem auto;">
-<h2>👇 Depoimentos de alguns dos nossos clientes 👇 </h2>
-<div class="comentario">
-<div class="avatar"><img alt="João M." src="img/joao.jpg"/></div>
-<div class="conteudo">
-<p class="nome">João M. – Mini Mercado São João, Rio Largo - AL</p>
-<p class="texto">Teve uma vez que um cliente achou um iogurte vencido na prateleira... que vergonha. Depois disso fui atrás de alguma coisa pra ajudar com isso. Achei o DataCerta e resolveu. Agora recebo alerta antes e não passo mais esse aperto.</p>
-</div>
-</div>
-<div class="comentario">
-<div class="avatar"><img alt="Carla S." src="img/carla.jpg"/></div>
-<div class="conteudo">
-<p class="nome">Carla S. – Padaria Central, Sorocaba -SP</p>
-<p class="texto">Antes era tudo na cabeça. Às vezes anotava num caderno, às vezes esquecia... Aí já viu né. Agora eu escaneio o código e recebo o aviso certinho. Me salvou já umas 3x.</p>
-</div>
-</div>
-<div class="comentario">
-<div class="avatar"><img alt="Marcelo R." src="img/marcelo.jpg"/></div>
-<div class="conteudo">
-<p class="nome">Marcelo R. – Agropecuária Boa Vista, Boa Vista - RR</p>
-<p class="texto">Perdi dois sacos de ração mês passado. R$ 180 no lixo. Desde que comecei a usar esse sistema aí, nunca mais perdi nada. Valeu a pena.</p>
-</div>
-</div>
-<div class="comentario">
-<div class="avatar"><img alt="Luciana P." src="img/luciana.jpg"/></div>
-<div class="conteudo">
-<p class="nome">Luciana P. – Supermercado Bom Preço, Maringá - PR</p>
-<p class="texto">Já tomei chamada da Vigilância por causa de coisa vencida... desde que comecei com o DataCerta nunca mais deixei nada passar. O bom é que é simples de usar.</p>
-</div>
-</div>
-<div class="comentario">
-<div class="avatar"><img alt="André F." src="img/andre.jpg"/></div>
-<div class="conteudo">
-<p class="nome">André F. – Empório da Serra, Cubatão - SP</p>
-<p class="texto">Sou meio enrolado com essas coisas de planilha, mas esse aí é tranquilo. Segui o passo a passo e já tô controlando tudo certinho.</p>
-</div>
-</div>
-</div>
-<p style="text-align: center; margin-top: 2rem;">
-      😰 Perder produto é ruim. Mas perder cliente ou ser multado é ainda pior.  
-      Veja no vídeo como evitar isso com o DataCerta.
-    </p>
-<div class="video-explicativo" id="video-explicativo">
-<h3>Assista ao vídeo e veja como o DataCerta funciona na pratica</h3>
-<iframe allowfullscreen="" src="https://www.youtube.com/embed/E1oG3qpqyew"></iframe>
-</div>
-<div class="contador-destaque" id="contadorTempo2">⏳ Carregando...</div>
-<p style="color: red; text-align: center; font-weight: bold; font-size: 30px;">
-     ⚠️ Promoção por tempo limitado! Válida somente até <span id="dataAtual2"></span>.
-    </p>
-<div class="cta">
-<a href="https://pay.hotmart.com/S99720580F?off=22yllhkz" id="botao-comprar-secundario">NÃO QUERO MAIS PERDER DINHEIRO COM VENCIDOS</a>
-</div>
-<div class="benefits">
-<div class="benefit"><span>📦</span> Acesso via celular, sem instalar nada</div>
-<div class="benefit"><span>📧</span> Alertas por e-mail setorizados</div>
-<div class="benefit"><span>📊</span> Dashboard com filtros e relatórios</div>
-<div class="benefit"><span>🔒</span> Segurança com proteção de senha avançada</div>
-<div class="benefit"><span>💸</span> Pagamento único. Sem mensalidade</div>
-</div>
-<div style="text-align: center; margin-top: 2rem;">
-<img alt="App DataCerta" class="svg" src="app.svg" style="max-width: 100%; height: auto; width: 550px;"/>
-</div>
-<div class="contador-destaque" id="contadorTempo3">⏳ Carregando...</div>
-<p style="color: red; text-align: center; font-weight: bold; font-size: 30px;">
-     ⚠️ Promoção por tempo limitado! Válida somente até <span id="dataAtual3"></span>.
-    </p>
-<div class="cta">
-<a href="https://pay.hotmart.com/S99720580F?off=22yllhkz" id="botao-comprar">QUERO COMPRAR COM O DESCONTO AGORA</a>
-</div>
-<div class="preco-ancorado">
-      De <s>R$ 297,00</s> por apenas <strong>R$ 100,00</strong> — acesso vitalício, sem mensalidades!
-     ou parcele em até <strong>12x de R$ 10,34</strong> no cartão de crédito
-     </div>
-<div class="selo-garantia">
-      Garantia de 7 dias: satisfação ou seu dinheiro de volta!
+  <h2 class="section-title">Você já perdeu dinheiro com produtos vencidos?</h2>
+  
+  <div class="problem-solution-container">
+    <div class="problema">
+      <h3>O problema que você enfrenta</h3>
+      <ul>
+      <li>Todo mês, seu comércio perde dinheiro com produtos vencidos — mesmo sem você perceber.</li>
+      <li>Pessoas já entram na sua loja só pra procurar produto vencido.</li>
+      <li>Mercadorias estão sendo jogadas fora e o prejuízo está virando rotina.</li>
+      <li>Clientes que reclamam de produtos vencidos ou trocas inesperadas.</li>
+      <li>A Vigilância Sanitária e o Procon podem aparecer a qualquer momento.</li>
+      </ul>
     </div>
-<div class="contador" id="contadorPlanilhas">
-      Mais de <strong id="numeroPlanilhas">50</strong> planilhas ativas em todo o Brasil. <br/>
-      Sistema usado por padarias, farmácias, mercados, agropecuarias, açougues... <br/>em mais de 20 estados.
+    
+    <div class="solucao">
+      <h3>A solução definitiva</h3>
+      <ul>
+        <li>Com o DataCerta, você nunca mais será pego de surpresa.</li>
+        <li>Registre validades diretamente do celular, sem instalar nada.</li>
+        <li>Receba alertas por e-mail antes que os produtos vençam.</li>
+        <li>Cada responsável recebe somente o que é do seu setor.</li>
+        <li>Painel completo com vendas, perdas e comparativos.</li>
+        <li>Segurança avançada para proteger suas informações.</li>
+        <li>Você paga apenas uma vez e usa pra sempre. Sem sustos no fim do mês. Sem mensalidades escondidas.</li>
+      </ul>
     </div>
-<div class="faq">
-<h3>Perguntas Frequentes</h3>
-<div class="faq-item">
-<strong>É difícil de usar?</strong>
-<div class="faq-resposta">Não. O sistema foi feito para ser o mais simples possível. Você pode usar no celular, computador, tablet ou coletor de dados.</div>
-</div>
-<div class="faq-item">
-<strong>O que eu preciso para usar?</strong>
-<div class="faq-resposta">Apenas um e-mail, acesso à internet e um celular (ou qualquer dispositivo com navegador).</div>
-</div>
-<div class="faq-item">
-<strong>Recebo algum treinamento?</strong>
-<div class="faq-resposta">Sim! Você receberá um passo a passo completo ensinando como ativar e configurar tudo do seu jeito.</div>
-</div>
-<div class="faq-item">
-<strong>Tem mensalidade?</strong>
-<div class="faq-resposta">Não. O pagamento é único. Você adquire uma vez e usa pra sempre.</div>
-</div>
-<div class="faq-item">
-<strong>Tenho direito à garantia?</strong>
-<div class="faq-resposta">Sim! Você tem 7 dias de garantia. Se não gostar por qualquer motivo, pode solicitar reembolso dentro desse prazo.</div>
-</div>
-</div>
+  </div>
 </section>
+
+<section class="benefits-section">
+  <div class="container">
+    <h2 class="section-title">💡 Por que escolher o DataCerta?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">📱</div>
+        <h3>Acesso via celular</h3>
+        <p>Sem instalar nada, acesse de qualquer dispositivo</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📧</div>
+        <h3>Alertas por e-mail</h3>
+        <p>Notificações setorizadas antes do vencimento</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🛒</div>
+        <h3>Mais Vendas</h3>
+        <p>Redução de perdas e aumento de lucros</p>
+      </div>
+      
+      <div class="benefit-card">
+        <div class="benefit-icon">🔒</div>
+        <h3>Segurança avançada</h3>
+        <p>Proteção de senha e dados sensíveis</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">💰</div>
+        <h3>Pagamento único</h3>
+        <p>Sem mensalidades ou custos recorrentes</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📊</div>
+        <h3>Dashboard completo</h3>
+        <p>Relatórios detalhados e filtros avançados</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="comentarios-container">
+    <h2 class="section-title">O que nossos clientes dizem</h2>
+    <div class="comentarios-grid">
+      <div class="comentario">
+        <div class="avatar">
+          <img alt="João M." src="img/joao.jpg"/>
+          <div>
+            <p class="nome">João M.</p>
+            <p>Mini Mercado São João, Rio Largo - AL</p>
+          </div>
+        </div>
+        <p class="texto">Teve uma vez que um cliente achou um iogurte vencido na prateleira... que vergonha. Depois disso fui atrás de alguma coisa pra ajudar com isso. Achei o DataCerta e resolveu. Agora recebo alerta antes e não passo mais esse aperto.</p>
+      </div>
+      
+      <div class="comentario">
+        <div class="avatar">
+          <img alt="Carla S." src="img/carla.jpg"/>
+          <div>
+            <p class="nome">Carla S.</p>
+            <p>Padaria Central, Sorocaba - SP</p>
+          </div>
+        </div>
+        <p class="texto">Antes era tudo na cabeça. Às vezes anotava num caderno, às vezes esquecia... Aí já viu né. Agora eu escaneio o código e recebo o aviso certinho. Me salvou já umas 3x.</p>
+      </div>
+      
+      <div class="comentario">
+        <div class="avatar">
+          <img alt="Marcelo R." src="img/marcelo.jpg"/>
+          <div>
+            <p class="nome">Marcelo R.</p>
+            <p>Agropecuária Boa Vista, Boa Vista - RR</p>
+          </div>
+        </div>
+        <p class="texto">Perdi dois sacos de ração mês passado. R$ 180 no lixo. Desde que comecei a usar esse sistema aí, nunca mais perdi nada. Valeu a pena.</p>
+      </div>
+      
+      <div class="comentario">
+        <div class="avatar">
+          <img alt="Luciana P." src="img/luciana.jpg"/>
+          <div>
+            <p class="nome">Luciana P.</p>
+            <p>Supermercado Bom Preço, Maringá - PR</p>
+          </div>
+        </div>
+        <p class="texto">Já tomei chamada da Vigilância por causa de coisa vencida... desde que comecei com o DataCerta nunca mais deixei nada passar. O bom é que é simples de usar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="video-container">
+  <h3>📹 Veja como o DataCerta funciona na prática</h3>
+  <div class="video-wrapper">
+    <iframe allowfullscreen src="https://www.youtube.com/embed/E1oG3qpqyew"></iframe>
+  </div>
+</div>
+
+<div class="app-demo">
+  <img alt="App DataCerta" src="app.svg"/>
+</div>
+
+<section id="oferta">
+  <div class="oferta-section">
+    <div class="oferta-content">
+      <h2>Oferta Especial por Tempo Limitado!</h2>
+      <p>Adquira hoje com desconto exclusivo e comece a economizar imediatamente</p>
+      
+      <div class="preco-container">
+        <div class="preco-original">De R$ 297,00</div>
+        <div class="preco-promocional">R$ 149,99</div>
+        <div class="preco-parcelado">ou parcele em até 10x de R$ 18,03</div>
+        <a href="https://pay.hotmart.com/S99720580F?off=iqejge19" class="cta-button">Quero Economizar Agora</a>
+      </div>
+      
+      <div class="garantia-container">
+        <div class="icon">🔒</div>
+        <div>Garantia de 7 dias: satisfação ou seu dinheiro de volta!</div>
+      </div>
+      
+      <div class="contador-destaque" style="background: rgba(0,0,0,0.3); margin-top: 2rem;">
+        ⏳ Mais de <strong id="numeroPlanilhas">50</strong> planilhas ativas em todo o Brasil
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="section-header">
+    <h2>Perguntas Frequentes</h2>
+    <p>Tire suas dúvidas sobre o DataCerta</p>
+  </div>
+  
+  <div class="faq-container">
+    <div class="faq-item">
+      <button class="faq-question">
+        É difícil de usar?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Não. O sistema foi feito para ser o mais simples possível. Você pode usar no celular, computador, tablet ou coletor de dados. Fornecemos um treinamento completo em vídeo para você dominar todas as funcionalidades em menos de 30 minutos.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <button class="faq-question">
+        O que eu preciso para usar?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Apenas um e-mail, acesso à internet e um celular (ou qualquer dispositivo com navegador). Não é necessário instalar nada - o sistema funciona totalmente online. Você pode acessar de qualquer lugar a qualquer momento.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <button class="faq-question">
+        Recebo algum treinamento?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Sim! Você receberá um passo a passo completo em vídeo ensinando como ativar e configurar tudo do seu jeito. Além disso, temos uma biblioteca de tutoriais e um suporte por e-mail para tirar dúvidas específicas.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <button class="faq-question">
+        Tem mensalidade?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Não. O pagamento é único. Você adquire uma vez e usa pra sempre. Sem taxas recorrentes, sem surpresas. Todos os futuros upgrades e melhorias são incluídos sem custo adicional.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <button class="faq-question">
+        Tenho garantia?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Sim! Você tem 7 dias de garantia incondicional. Se por qualquer motivo você não ficar satisfeito, basta solicitar o reembolso dentro desse prazo e devolveremos 100% do seu dinheiro, sem perguntas.
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <button class="faq-question">
+        Quantos usuários posso ter?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        Você pode cadastrar até 5 usuários gratuitamente. Cada usuário terá acesso apenas aos setores que você definir, garantindo segurança e organização. Caso precise de mais usuários, temos planos especiais com condições especiais.
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="call-fixo">
-   ⏳ Oferta termina em <span id="contadorMobile">carregando...</span> — <a href="https://pay.hotmart.com/S99720580F?off=22yllhkz">Ativar agora</a>
+  ⏳ Oferta termina em <span id="contadorMobile">carregando...</span> — <a href="https://pay.hotmart.com/S99720580F?off=iqejge19">Ativar agora</a>
 </div>
-<footer>
-<div class="social">
-<a href="https://www.instagram.com/datacerta.app/" target="_blank">
-<img alt="Instagram" src="https://cdn-icons-png.flaticon.com/512/174/174855.png"/>
-        @datacerta.app
-      </a>
-</div>
-<br/>
-    © 2025 DataCerta. Todos os direitos reservados.<br/>
-<br/>
-    Ao continuar, você concorda com nossos <a href="privacidade.html">termos e política de privacidade</a>.
-  </footer>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="privacidade.html">Política de Privacidade</a></li>
+        <li><a href="termo.html">Termos de Uso</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Suporte</h3>
+      <ul>
+        <li><a href="mailto:datacerta.contato@gmail.com">datacerta.contato@gmail.com</a></li>
+        <li><a href="instagram.com/datacerta.app">Instagram</a></li>
+      </ul>
+    </div>
+  
+  </div>
+  <div class="copyright">
+    © 2025 DataCerta. Todos os direitos reservados.<br>
+    Ao continuar, você concorda com nossos <a href="privacidade.html"> termos e política de privacidade</a>.
+  </div>
+</footer>
+
 <script>
-    // Função para atualizar a data atual em todos os spans
-    function atualizarDataAtual() {
-      const hoje = new Date();
-      const dia = String(hoje.getDate()).padStart(2, '0');
-      const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-      const ano = hoje.getFullYear();
-      const dataFormatada = `${dia}/${mes}/${ano}`;
+  // Função para atualizar a data atual
+  function atualizarDataAtual() {
+    const hoje = new Date();
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+    const ano = hoje.getFullYear();
+    const dataFormatada = `${dia}/${mes}/${ano}`;
 
-      // Atualiza todos os spans com a data atual
-      const spans = ['dataAtual', 'dataAtual2', 'dataAtual3'];
-      spans.forEach(id => {
+    document.getElementById('dataAtual').textContent = dataFormatada;
+  }
+
+  // Função para iniciar contadores regressivos
+  function iniciarContador(idElemento, formato = 'completo') {
+    const elemento = document.getElementById(idElemento);
+    const textoElemento = idElemento === 'contadorTempo' ? 
+      document.getElementById('contadorTexto') : 
+      (idElemento === 'contadorMobile' ? 
+        document.getElementById('contadorMobile') : 
+        elemento);
+    
+    if (!elemento || !textoElemento) return;
+
+    function atualizarContador() {
+      const agora = new Date();
+      const fimDoDia = new Date(agora);
+      fimDoDia.setHours(23, 59, 59, 999);
+      
+      const diferenca = fimDoDia.getTime() - agora.getTime();
+      
+      if (diferenca <= 0) {
+        const novoFimDoDia = new Date(agora);
+        novoFimDoDia.setDate(novoFimDoDia.getDate() + 1);
+        novoFimDoDia.setHours(23, 59, 59, 999);
+        const novaDiferenca = novoFimDoDia.getTime() - agora.getTime();
+        calcularTempo(novaDiferenca);
+      } else {
+        calcularTempo(diferenca);
+      }
+
+      function calcularTempo(tempo) {
+        const horas = Math.floor(tempo / (1000 * 60 * 60));
+        const minutos = Math.floor((tempo % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((tempo % (1000 * 60)) / 1000);
+
+        const h = String(horas).padStart(2, '0');
+        const m = String(minutos).padStart(2, '0');
+        const s = String(segundos).padStart(2, '0');
+
+        textoElemento.textContent = `${h}h ${m}m ${s}s`;
+      }
+    }
+
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
+  }
+
+  // Inicializar quando o DOM estiver carregado
+  document.addEventListener("DOMContentLoaded", function() {
+    // Atualizar data atual
+    atualizarDataAtual();
+    setInterval(atualizarDataAtual, 60000);
+    
+    // Iniciar contadores
+    iniciarContador("contadorTempo", 'completo');
+    iniciarContador("contadorMobile", 'completo');
+
+    // Contador de planilhas
+    const dataBase = new Date("2025-04-01");
+    const hoje = new Date();
+    const diasPassados = Math.floor((hoje - dataBase) / (1000 * 60 * 60 * 24));
+    const numero = 10 + Math.floor(diasPassados * 1.2) % 200;
+    document.getElementById("numeroPlanilhas").textContent = numero;
+
+    // FAQ animado
+    const faqItems = document.querySelectorAll(".faq-item");
+    faqItems.forEach(item => {
+      item.addEventListener("click", function() {
+        this.classList.toggle("active");
+      });
+    });
+
+    // Scroll suave para links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  });
+
+  // Backup para contadores
+  window.addEventListener("load", function() {
+    setTimeout(function() {
+      const contadores = ['contadorTempo', 'contadorMobile'];
+      contadores.forEach(id => {
         const elemento = document.getElementById(id);
-        if (elemento) {
-          elemento.textContent = dataFormatada;
+        if (elemento && elemento.textContent.toLowerCase().includes("carregando")) {
+          iniciarContador(id, 'completo');
         }
       });
-    }
+    }, 1000);
+  });
+</script>
 
-    function iniciarContador(idElemento, formato = 'completo') {
-      const elemento = document.getElementById(idElemento);
-      
-      if (!elemento) {
-        console.error('Elemento não encontrado:', idElemento);
-        return;
-      }
-
-      function atualizarContador() {
-        const agora = new Date();
-        
-        // Calcular o fim do dia atual (23:59:59)
-        const fimDoDia = new Date(agora);
-        fimDoDia.setHours(23, 59, 59, 999);
-        
-        const diferenca = fimDoDia.getTime() - agora.getTime();
-        
-        if (diferenca <= 0) {
-          // Se passou da meia-noite, recalcular para o próximo dia
-          const novoFimDoDia = new Date(agora);
-          novoFimDoDia.setDate(novoFimDoDia.getDate() + 1);
-          novoFimDoDia.setHours(23, 59, 59, 999);
-          
-          const novaDiferenca = novoFimDoDia.getTime() - agora.getTime();
-          calcularTempo(novaDiferenca);
-        } else {
-          calcularTempo(diferenca);
-        }
-
-        function calcularTempo(tempo) {
-          // Calcular tempo restante
-          const horas = Math.floor(tempo / (1000 * 60 * 60));
-          const minutos = Math.floor((tempo % (1000 * 60 * 60)) / (1000 * 60));
-          const segundos = Math.floor((tempo % (1000 * 60)) / 1000);
-
-          // Formatar com zeros à esquerda
-          const h = String(horas).padStart(2, '0');
-          const m = String(minutos).padStart(2, '0');
-          const s = String(segundos).padStart(2, '0');
-
-          if (formato === 'completo') {
-            elemento.textContent = `⏳ Tempo restante: ${h}h ${m}m ${s}s`;
-          } else {
-            elemento.textContent = `${h}h ${m}m ${s}s`;
-          }
-        }
-      }
-
-      // Atualizar imediatamente
-      atualizarContador();
-      
-      // Atualizar a cada segundo
-      const intervalo = setInterval(atualizarContador, 1000);
-      
-      return intervalo;
-    }
-
-    // Inicializar quando o DOM estiver carregado
-    document.addEventListener("DOMContentLoaded", function() {
-      console.log("DOM carregado, iniciando contadores...");
-      
-      // Atualizar data atual primeiro
-      atualizarDataAtual();
-      
-      // Atualizar a data a cada minuto (em caso de mudança de dia)
-      setInterval(atualizarDataAtual, 60000);
-      
-      // Iniciar contadores principais
-      iniciarContador("contadorTempo", 'completo');
-      iniciarContador("contadorTempo2", 'completo');
-      iniciarContador("contadorTempo3", 'completo');
-      iniciarContador("contadorMobile", 'simples');
-
-      // Contador de planilhas (mantém o original)
-      const dataBase = new Date("2025-04-01");
-      const hoje = new Date();
-      const diasPassados = Math.floor((hoje - dataBase) / (1000 * 60 * 60 * 24));
-      const numero = 10 + Math.floor(diasPassados * 1.2) % 200;
-      document.getElementById("numeroPlanilhas").textContent = numero;
-
-      // FAQ animado
-      const faqItems = document.querySelectorAll(".faq-item");
-      faqItems.forEach(item => {
-        item.addEventListener("click", function() {
-          this.classList.toggle("ativa");
-        });
-      });
-
-      console.log("Contadores iniciados com sucesso!");
+<script>
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.parentElement;
+      item.classList.toggle('active');
     });
+  });
+</script>
 
-    // Backup: inicializar após carregamento completo da página
-    window.addEventListener("load", function() {
-      // Verificar se os contadores estão funcionando
-      setTimeout(function() {
-        const contadores = ['contadorTempo', 'contadorTempo2', 'contadorTempo3', 'contadorMobile'];
-        
-        contadores.forEach(id => {
-          const elemento = document.getElementById(id);
-          if (elemento && elemento.textContent.includes("Carregando")) {
-            if (id === 'contadorMobile') {
-              iniciarContador(id, 'simples');
-            } else {
-              iniciarContador(id, 'completo');
-            }
-          }
-        });
-      }, 1000);
-    });
-  </script>
 </body>
 </html>
